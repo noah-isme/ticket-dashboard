@@ -14,7 +14,7 @@ Option 1: Internal IT Ticket Dashboard.
 - TypeScript
 - Tailwind CSS
 - Prisma
-- SQLite
+- PostgreSQL
 - pnpm
 
 ## Features
@@ -52,7 +52,7 @@ Run the database migration:
 pnpm db:migrate
 ```
 
-Seed the SQLite database:
+Seed the PostgreSQL database:
 
 ```bash
 pnpm db:seed
@@ -76,13 +76,14 @@ pnpm db:studio
 
 ## Database
 
-The app uses SQLite through Prisma. The local database URL is configured in `.env`:
+The app uses PostgreSQL through Prisma. Configure the database URLs in `.env`:
 
 ```txt
-DATABASE_URL="file:./dev.db"
+DATABASE_URL="postgresql://USER:PASSWORD@HOST:5432/DATABASE?sslmode=require"
+DATABASE_URL_UNPOOLED="postgresql://USER:PASSWORD@HOST:5432/DATABASE?sslmode=require"
 ```
 
-The generated database file is stored under `prisma/dev.db`.
+`DATABASE_URL` is used by the application. `DATABASE_URL_UNPOOLED` is used by Prisma migrations for providers such as Neon that expose both pooled and direct connections.
 
 ## Screenshots
 
