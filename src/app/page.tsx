@@ -4,6 +4,7 @@ import { DashboardCards } from "@/components/DashboardCards";
 import { EmptyState } from "@/components/EmptyState";
 import { TicketFilters } from "@/components/TicketFilters";
 import { TicketTable } from "@/components/TicketTable";
+import { ToastOnLoad } from "@/components/ToastOnLoad";
 import { prisma } from "@/lib/prisma";
 import {
   calculateTicketSummary,
@@ -73,6 +74,7 @@ export default async function DashboardPage({
   searchParams
 }: DashboardPageProps) {
   const params = (await searchParams) ?? {};
+  const toast = getSingleParam(params.toast);
   const filters = getFilters(params);
   const where = buildWhere(filters);
 
@@ -91,6 +93,7 @@ export default async function DashboardPage({
 
   return (
     <main className="min-h-screen bg-slate-50">
+      <ToastOnLoad toast={toast} />
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-6 sm:px-6 lg:px-8">
         <header className="flex flex-col gap-4 border-b border-slate-200 pb-6 md:flex-row md:items-end md:justify-between">
           <div>

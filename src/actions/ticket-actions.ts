@@ -65,7 +65,7 @@ export async function createTicket(formData: FormData) {
   });
 
   revalidatePath("/");
-  redirect("/");
+  redirect(`/?toast=ticket-created&toastId=${Date.now()}`);
 }
 
 export async function updateTicket(id: string, formData: FormData) {
@@ -75,7 +75,7 @@ export async function updateTicket(id: string, formData: FormData) {
   });
 
   revalidatePath("/");
-  redirect("/");
+  redirect(`/?toast=ticket-updated&toastId=${Date.now()}`);
 }
 
 export async function deleteTicket(id: string) {
