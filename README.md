@@ -17,6 +17,12 @@ Option 1: Internal IT Ticket Dashboard.
 - PostgreSQL
 - pnpm
 
+## Prerequisites
+
+- Node.js 20+
+- pnpm
+- PostgreSQL database, for example Neon or Supabase
+
 ## Features
 
 - View ticket list
@@ -32,6 +38,21 @@ Option 1: Internal IT Ticket Dashboard.
 - Seed data with 10 sample tickets
 - Responsive layout with horizontal table scrolling on small screens
 
+## Assessment Coverage
+
+| Requirement | Status |
+|---|---|
+| Add tickets | Completed |
+| Edit tickets | Completed |
+| Update ticket status | Completed |
+| Delete tickets | Completed |
+| View ticket list | Completed |
+| Dashboard summary | Completed |
+| Responsive layout | Completed |
+| Search and filter | Completed |
+| Status color indicators | Completed |
+| Sorting | Completed |
+
 ## Getting Started
 
 Install dependencies:
@@ -39,6 +60,17 @@ Install dependencies:
 ```bash
 pnpm install
 ```
+
+Create the local environment file:
+
+```bash
+cp .env.example .env
+```
+
+Then fill in:
+
+1. `DATABASE_URL`
+2. `DATABASE_URL_UNPOOLED`
 
 Generate Prisma client:
 
@@ -95,7 +127,7 @@ pnpm test:e2e
 
 ## Database
 
-The app uses PostgreSQL through Prisma. Configure the database URLs in `.env`:
+The app uses PostgreSQL through Prisma. Copy `.env.example` to `.env`, then configure the database URLs:
 
 ```txt
 DATABASE_URL="postgresql://USER:PASSWORD@HOST:5432/DATABASE?sslmode=require"
@@ -103,6 +135,10 @@ DATABASE_URL_UNPOOLED="postgresql://USER:PASSWORD@HOST:5432/DATABASE?sslmode=req
 ```
 
 `DATABASE_URL` is used by the application. `DATABASE_URL_UNPOOLED` is used by Prisma migrations for providers such as Neon that expose both pooled and direct connections.
+
+## Deployment Notes
+
+This project is deployed using Vercel. The database uses PostgreSQL through Prisma. Environment variables must be configured in the deployment platform before running migrations or accessing the production database.
 
 ## Screenshots
 
