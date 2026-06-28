@@ -72,7 +72,26 @@ Open `http://localhost:3000` in a browser.
 pnpm lint
 pnpm build
 pnpm db:studio
+pnpm test:e2e      # Run E2E tests in headless mode (automatically seeds DB first)
+pnpm test:e2e:ui   # Run E2E tests in Playwright's interactive UI mode
 ```
+
+## End-to-End Testing
+
+We have configured **Playwright** for browser-based E2E tests.
+
+The test suite runs against the PostgreSQL database, testing the following:
+- Dashboard initial rendering and stats calculation correctness.
+- Creating a ticket, verifying the data in the table, and ensuring metrics increment.
+- Searching and filtering by Category, Status, or Priority.
+- Modifying status/priority and checking the recalculation of statistics.
+- Deleting a ticket after confirming the modal dialog and verifying stats update.
+
+To run tests:
+```bash
+pnpm test:e2e
+```
+*Note: This automatically runs database seeding before initiating tests to keep state deterministic.*
 
 ## Database
 
@@ -87,7 +106,23 @@ DATABASE_URL_UNPOOLED="postgresql://USER:PASSWORD@HOST:5432/DATABASE?sslmode=req
 
 ## Screenshots
 
-Screenshots are not included in this initial repository state.
+### 1. Initial Dashboard Load
+![Initial Dashboard Load](playwright-screenshots/dashboard-initial.png)
+
+### 2. Add Ticket Form
+![Add Ticket Form](playwright-screenshots/ticket-new-form.png)
+
+### 3. Dashboard After Ticket Creation
+![Dashboard After Ticket Creation](playwright-screenshots/dashboard-after-create.png)
+
+### 4. Search and Filters Applied
+![Search and Filters Applied](playwright-screenshots/dashboard-filtered.png)
+
+### 5. Dashboard After Status and Priority Update
+![Dashboard After Status and Priority Update](playwright-screenshots/dashboard-after-edit.png)
+
+### 6. Dashboard After Ticket Deletion
+![Dashboard After Ticket Deletion](playwright-screenshots/dashboard-after-delete.png)
 
 ## Known Limitations
 

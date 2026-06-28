@@ -15,5 +15,9 @@ dist
 # logs
 *.log
 
+# test artifacts
+playwright-report
+test-results
+
 # system
 .DS_Store
